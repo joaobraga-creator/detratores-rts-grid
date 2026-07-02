@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Configurar credenciais Google
-        shell: pwsh
+        shell: powershell
         run: |
           $credPath = "$env:RUNNER_TEMP\gcp-credentials.json"
           [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("${{ secrets.GOOGLE_CREDENTIALS_BASE64 }}")) | Set-Content $credPath -Encoding UTF8
