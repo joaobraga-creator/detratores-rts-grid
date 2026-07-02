@@ -1,0 +1,15 @@
+{
+  "name": "detratores-rts-grid-refresh",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-detratores-rts-grid.js",
+    "publish": "node grid_dataset_publish_all.mjs",
+    "update": "npm run build && npm run publish"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.9.4",
+    "adm-zip": "^0.5.17"
+  }
+}
