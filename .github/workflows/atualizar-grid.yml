@@ -23,12 +23,16 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
+      - name: Configurar credenciais Google
+        run: |
+          echo "${{ secrets.GOOGLE_CREDENTIALS_BASE64 }}" | base64 -d > /tmp/gcp-credentials.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-credentials.json" >> $GITHUB_ENV
+
       - name: Criar pasta de output
         run: mkdir -p output/grid-datasets
 
       - name: Rodar query BigQuery e gerar datasets
         env:
-          GOOGLE_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_CREDENTIALS_BASE64 }}
           BQ_PROJECT_ID: meli-bi-data
           BQ_LOCATION: US
           GRID_DOC_ID: 01KVR65T6TXSTK9FQERHAC8VET
